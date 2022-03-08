@@ -13,13 +13,7 @@ public class UserOperations {
 
     public static final String EMAIL_POSTFIX = "@yandex.ru";
 
-    /*
-     метод регистрации нового пользователя
-     возвращает мапу с данными: имя, пароль, имэйл
-     если регистрация не удалась, возвращает пустую мапу
-     */
-    public Map<String, String> register() {
-
+    public Map<String, String> getRandomUserData() {
         // с помощью библиотеки RandomStringUtils генерируем имэйл
         // метод randomAlphabetic генерирует строку, состоящую только из букв, в качестве параметра передаём длину строки
         String email = RandomStringUtils.randomAlphabetic(10) + EMAIL_POSTFIX;
@@ -33,6 +27,17 @@ public class UserOperations {
         inputDataMap.put("email", email);
         inputDataMap.put("password", password);
         inputDataMap.put("name", name);
+
+        return inputDataMap;
+    }
+
+    /*
+     метод регистрации нового пользователя
+     возвращает мапу с данными: имя, пароль, имэйл
+     если регистрация не удалась, возвращает пустую мапу
+     */
+    public Map<String, String> register() {
+        Map<String, String> inputDataMap = getRandomUserData();
 
         // отправляем запрос на регистрацию пользователя и десериализуем ответ в переменную response
         UserRegisterResponse response = given()
@@ -49,7 +54,7 @@ public class UserOperations {
         if (response != null) {
             responseData.put("email", response.getUser().getEmail());
             responseData.put("name", response.getUser().getName());
-            responseData.put("password", password);
+            responseData.put("password", inputDataMap.get("password"));
 
             // токен, нужный для удаления пользователя, кладем в статическое поле класса с токенами
             // убираем слово Bearer в начале токена
@@ -58,6 +63,24 @@ public class UserOperations {
             Tokens.setRefreshToken(response.getRefreshToken());
         }
         return responseData;
+    }
+
+    public void login(Map<String, String> loginData) {
+        UserRegisterResponse response = given()
+                .spec(Base.getBaseSpec())
+                .and()
+                .body(loginData)
+                .when()
+                .post("auth/login")
+                .body()
+                .as(UserRegisterResponse.class);
+        if (response != null) {
+            // токен, нужный для удаления пользователя, кладем в статическое поле класса с токенами
+            // убираем слово Bearer в начале токена
+            // так же запоминаем refreshToken
+            Tokens.setAccessToken(response.getAccessToken().substring(7));
+            Tokens.setRefreshToken(response.getRefreshToken());
+        }
     }
 
     /*
@@ -75,6 +98,6 @@ public class UserOperations {
                 .delete("auth/user")
                 .then()
                 .statusCode(202);
+        Tokens.setAccessToken(null);
     }
-
 }
