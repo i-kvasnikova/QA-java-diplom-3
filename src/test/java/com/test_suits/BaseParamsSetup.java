@@ -17,6 +17,7 @@ import static com.codeborne.selenide.Selenide.webdriver;
 @RunWith(Parameterized.class)
 public class BaseParamsSetup {
     ApiConfig apiConfig = ConfigFactory.create(ApiConfig.class);
+    protected UserOperations userOperations;
 
     @Parameterized.Parameter
     public String webDriverName;
@@ -24,15 +25,16 @@ public class BaseParamsSetup {
     @Before
     @Step("Установка конфигурации браузера")
     public void applySettings() {
+        userOperations = new UserOperations();
         System.setProperty("webdriver.chrome.driver", apiConfig.getWebdriversPath() + webDriverName);
         Configuration.startMaximized = true;
     }
 
     @After
     @Step("Закрыть браузер и удалить пользователя (если создан)")
-    public void tearDown (){
+    public void tearDownMain (){
         webdriver().driver().close();
-        new UserOperations().delete();
+        userOperations.delete();
     }
 
     @Parameterized.Parameters(name = "Используемый драйвер: {0}")

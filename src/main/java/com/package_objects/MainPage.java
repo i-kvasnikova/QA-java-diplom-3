@@ -27,6 +27,7 @@ public class MainPage extends PagesHeader {
     @FindBy(how = How.XPATH, using = ".//h2[text()='Начинки']")
     protected SelenideElement fillingHeader;
 
+    @Step("Нажать на кнопку 'Личный кабинет'")
     public void clickLoginButton() {
         loginButton.scrollTo();
         loginButton.click();
