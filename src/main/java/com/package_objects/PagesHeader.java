@@ -6,34 +6,34 @@ import org.openqa.selenium.support.How;
 
 public class PagesHeader {
     @FindBy(how = How.XPATH, using = ".//a[contains(@class, 'AppHeader_header')]/p[text()='Конструктор']")
-    protected SelenideElement btnConstructor;
+    protected SelenideElement constructorButton;
 
     @FindBy(how = How.XPATH, using = ".//a[contains(@class, 'AppHeader_header')]/p[text()='Лента Заказов']")
-    protected SelenideElement btnOrderList;
+    protected SelenideElement orderListButton;
 
     @FindBy(how = How.XPATH, using = ".//a[contains(@class, 'AppHeader_header')]/p[text()='Личный Кабинет']")
-    protected SelenideElement btnAccount;
+    protected SelenideElement accountButton;
 
     @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'AppHeader_header__logo')]")
-    protected SelenideElement btnSiteLogo;
+    protected SelenideElement siteLogoButton;
 
-    public void clickBtnConstructor() {
-        btnConstructor.scrollTo();
-        btnConstructor.click();
+    public void clickConstructorButton() {
+        constructorButton.scrollTo();
+        constructorButton.click();
     }
 
-    public void clickBtnOrderList() {
-        btnOrderList.scrollTo();
-        btnOrderList.click();
+    public void clickOrderListButton() {
+        orderListButton.scrollTo();
+        orderListButton.click();
     }
 
-    public void clickBtnAccount() {
-        btnAccount.scrollTo();
-        btnAccount.click();
+    public void clickAccountButton() {
+        accountButton.scrollTo();
+        accountButton.click();
     }
 
-    public void clickBtnSiteLogo() {
-        btnSiteLogo.scrollTo();
-        btnSiteLogo.click();
+    public void clickSiteLogoButton() {
+        siteLogoButton.scrollTo();
+        siteLogoButton.click();
     }
 }

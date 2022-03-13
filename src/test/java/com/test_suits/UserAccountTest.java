@@ -24,13 +24,13 @@ public class UserAccountTest extends BaseParamsSetup {
     @Test
     @Step("Зарегистрировать пользователя с валидными данными")
     public void registerUserWithValidData() {
-        openMainPage().clickBtnLogin();
-        page(LoginPage.class).clickBtnRegister();
+        openMainPage().clickLoginButton();
+        page(LoginPage.class).clickRegisterButton();
         RegisterPage registerPage = page(RegisterPage.class);
 
         Map<String, String> userData = new UserOperations().getRandomUserData();
         registerPage.fillInUserData(userData);
-        registerPage.clickBtnRegister();
+        registerPage.clickRegisterButton();
 
         LoginPage loginPage = page(LoginPage.class);
         assertEquals(userData.get("email"), loginPage.getEmailFilledValue());
@@ -44,46 +44,46 @@ public class UserAccountTest extends BaseParamsSetup {
     @Step("Зарегистрировать пользователя с некорректным паролем")
     @Description("Пользователь не зарегистрирован, выдано сообщение об ошибке")
     public void registerUserWithInvalidPassword() {
-        openMainPage().clickBtnLogin();
-        page(LoginPage.class).clickBtnRegister();
+        openMainPage().clickLoginButton();
+        page(LoginPage.class).clickRegisterButton();
         RegisterPage registerPage = page(RegisterPage.class);
 
         Map<String, String> userData = new UserOperations().getRandomUserData();
         userData.put("password", "312");
         registerPage.fillInUserData(userData);
-        registerPage.clickBtnRegister();
+        registerPage.clickRegisterButton();
 
-        assertTrue(registerPage.isVisibleTextErrorMessage());
+        assertTrue(registerPage.isVisibleErrorMessageText());
     }
 
     @Test
     @Step("Вход в аккаунт по кнопке «Войти в аккаунт» на главной")
     public void loginOnMainPage() {
         Map<String, String> userData = new UserOperations().register();
-        openMainPage().clickBtnLogin();
+        openMainPage().clickLoginButton();
         LoginPage loginPage = page(LoginPage.class);
 
         loginPage.fillInUserData(userData);
-        loginPage.clickBtnLogin();
-        loginPage.clickBtnAccount();
+        loginPage.clickLoginButton();
+        loginPage.clickAccountButton();
         assertThat(webdriver().driver().url(), equalToIgnoringCase(apiConfig.getProfilePageUrl()));
 
-        page(AccountPage.class).clickBtnLogout();
+        page(AccountPage.class).clickLogoutButton();
     }
 
     @Test
     @Step("Вход в аккаунт через кнопку «Личный кабинет»")
-    public void loginWithAccountHeaderBtn() {
+    public void loginWithAccountHeaderButton() {
         Map<String, String> userData = new UserOperations().register();
-        openMainPage().clickBtnAccount();
+        openMainPage().clickAccountButton();
         LoginPage loginPage = page(LoginPage.class);
 
         loginPage.fillInUserData(userData);
-        loginPage.clickBtnLogin();
-        loginPage.clickBtnAccount();
+        loginPage.clickLoginButton();
+        loginPage.clickAccountButton();
         assertThat(webdriver().driver().url(), equalToIgnoringCase(apiConfig.getProfilePageUrl()));
 
-        page(AccountPage.class).clickBtnLogout();
+        page(AccountPage.class).clickLogoutButton();
     }
 
     @Test
@@ -92,19 +92,19 @@ public class UserAccountTest extends BaseParamsSetup {
         Map<String, String> userData = new UserOperations().register();
 
         //Перейти в личный кабинет
-        openMainPage().clickBtnLogin();
+        openMainPage().clickLoginButton();
         //Перейти на форму регистрации
-        page(LoginPage.class).clickBtnRegister();
+        page(LoginPage.class).clickRegisterButton();
         //Нажать кнопку 'Вход' на форме регистрации
-        page(RegisterPage.class).clickBtnLogin();
+        page(RegisterPage.class).clickLoginButton();
 
         LoginPage loginPage = page(LoginPage.class);
         loginPage.fillInUserData(userData);
-        loginPage.clickBtnLogin();
-        loginPage.clickBtnAccount();
+        loginPage.clickLoginButton();
+        loginPage.clickAccountButton();
         assertThat(webdriver().driver().url(), equalToIgnoringCase(apiConfig.getProfilePageUrl()));
 
-        page(AccountPage.class).clickBtnLogout();
+        page(AccountPage.class).clickLogoutButton();
     }
 
     @Test
@@ -113,19 +113,19 @@ public class UserAccountTest extends BaseParamsSetup {
         Map<String, String> userData = new UserOperations().register();
 
         //Перейти в личный кабинет
-        openMainPage().clickBtnLogin();
+        openMainPage().clickLoginButton();
         //Перейти на форму восстановления пароля
-        page(LoginPage.class).clickBtnRestorePassword();
+        page(LoginPage.class).clickRestorePasswordButton();
         //Нажать кнопку 'Вход' на форме восстановления пароля
-        page(RestorePasswordPage.class).clickBtnLogin();
+        page(RestorePasswordPage.class).clickLoginButton();
 
         LoginPage loginPage = page(LoginPage.class);
         loginPage.fillInUserData(userData);
-        loginPage.clickBtnLogin();
-        loginPage.clickBtnAccount();
+        loginPage.clickLoginButton();
+        loginPage.clickAccountButton();
         assertThat(webdriver().driver().url(), equalToIgnoringCase(apiConfig.getProfilePageUrl()));
 
-        page(AccountPage.class).clickBtnLogout();
+        page(AccountPage.class).clickLogoutButton();
     }
 
     @Test
@@ -133,14 +133,14 @@ public class UserAccountTest extends BaseParamsSetup {
     public void logoutOnAccountPage() {
         Map<String, String> userData = new UserOperations().register();
 
-        openMainPage().clickBtnAccount();
+        openMainPage().clickAccountButton();
         LoginPage loginPage = page(LoginPage.class);
         loginPage.fillInUserData(userData);
-        loginPage.clickBtnLogin();
-        loginPage.clickBtnAccount();
+        loginPage.clickLoginButton();
+        loginPage.clickAccountButton();
 
         AccountPage accountPage = page(AccountPage.class);
-        accountPage.clickBtnLogout();
+        accountPage.clickLogoutButton();
 
         assertTrue(loginPage.headerLoginIsVisible());
     }

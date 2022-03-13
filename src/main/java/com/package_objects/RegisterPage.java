@@ -9,43 +9,43 @@ import java.util.Map;
 
 public class RegisterPage extends PagesHeader {
     @FindBy(how = How.XPATH, using = ".//label[contains(text(), 'Имя')]//following-sibling::input")
-    private SelenideElement inputName;
+    private SelenideElement nameInput;
 
     @FindBy(how = How.XPATH, using = ".//label[contains(text(), 'Email')]//following-sibling::input")
-    private SelenideElement inputEmail;
+    private SelenideElement emailInput;
 
     @FindBy(how = How.XPATH, using = ".//label[contains(text(), 'Пароль')]//following-sibling::input")
-    private SelenideElement inputPassword;
+    private SelenideElement passwordInput;
 
     @FindBy(how = How.XPATH, using = ".//button[contains(text(), 'Зарегистрироваться')]")
-    private SelenideElement btnRegister;
+    private SelenideElement registerButton;
 
     @FindBy(how = How.XPATH, using = ".//a[contains(text(), 'Войти')]")
-    private SelenideElement btnLogin;
+    private SelenideElement loginButton;
 
     @FindBy(how = How.XPATH, using = ".//p[contains(text(), 'Некорректный пароль')]")
-    private SelenideElement textErrorMessage;
+    private SelenideElement errorMessageText;
 
     @Step("Нажать кнопку 'Зарегистрироваться'")
-    public void clickBtnRegister() {
-        btnRegister.scrollTo();
-        btnRegister.click();
+    public void clickRegisterButton() {
+        registerButton.scrollTo();
+        registerButton.click();
     }
 
     @Step("Нажать кнопку 'Войти'")
-    public void clickBtnLogin() {
-        btnLogin.scrollTo();
-        btnLogin.click();
+    public void clickLoginButton() {
+        loginButton.scrollTo();
+        loginButton.click();
     }
 
     @Step("Заполнить поля для регистрации пользователя")
     public void fillInUserData(Map<String, String> user) {
-       inputName.setValue(user.get("name"));
-       inputEmail.setValue(user.get("email"));
-       inputPassword.setValue(user.get("password"));
+       nameInput.setValue(user.get("name"));
+       emailInput.setValue(user.get("email"));
+       passwordInput.setValue(user.get("password"));
     }
 
-    public boolean isVisibleTextErrorMessage() {
-        return textErrorMessage.isDisplayed();
+    public boolean isVisibleErrorMessageText() {
+        return errorMessageText.isDisplayed();
     }
 }

@@ -7,11 +7,11 @@ import org.openqa.selenium.support.How;
 
 public class RestorePasswordPage extends PagesHeader {
     @FindBy(how = How.XPATH, using = ".//a[contains(text(), 'Войти')]")
-    private SelenideElement btnLogin;
+    private SelenideElement loginButton;
 
     @Step("Нажать кнопку 'Войти'")
-    public void clickBtnLogin() {
-        btnLogin.scrollTo();
-        btnLogin.click();
+    public void clickLoginButton() {
+        loginButton.scrollTo();
+        loginButton.click();
     }
 }

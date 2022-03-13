@@ -7,54 +7,54 @@ import org.openqa.selenium.support.How;
 
 public class MainPage extends PagesHeader {
     @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'BurgerConstructor_basket')]/button[text()='Войти в аккаунт']")
-    protected SelenideElement btnLogin;
+    protected SelenideElement loginButton;
 
     @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'tab_tab')]/span[text()='Булки']")
-    protected SelenideElement tabBun;
+    protected SelenideElement bunTab;
 
     @FindBy(how = How.XPATH, using = ".//h2[text()='Булки']")
-    protected SelenideElement headerBun;
+    protected SelenideElement bunHeader;
 
     @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'tab_tab')]/span[text()='Соусы']")
-    protected SelenideElement tabSauce;
+    protected SelenideElement sauceTab;
 
     @FindBy(how = How.XPATH, using = ".//h2[text()='Соусы']")
-    protected SelenideElement headerSauce;
+    protected SelenideElement sauceHeader;
 
     @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'tab_tab')]/span[text()='Начинки']")
-    protected SelenideElement tabFilling;
+    protected SelenideElement fillingTab;
 
     @FindBy(how = How.XPATH, using = ".//h2[text()='Начинки']")
-    protected SelenideElement headerFilling;
+    protected SelenideElement fillingHeader;
 
-    public void clickBtnLogin() {
-        btnLogin.scrollTo();
-        btnLogin.click();
+    public void clickLoginButton() {
+        loginButton.scrollTo();
+        loginButton.click();
     }
 
     @Step("Нажать на вкладку 'Булки'")
-    public void clickTabBun() {
-        tabBun.scrollTo();
-        tabBun.click();
+    public void clickBunTab() {
+        bunTab.scrollTo();
+        bunTab.click();
     }
     @Step("Нажать на вкладку 'Соусы'")
-    public void clickTabSauce() {
-        tabSauce.scrollTo();
-        tabSauce.click();
+    public void clickSauceTab() {
+        sauceTab.scrollTo();
+        sauceTab.click();
     }
     @Step("Нажать на вкладку 'Начинки'")
-    public void clickTabFilling() {
-        tabFilling.scrollTo();
-        tabFilling.click();
+    public void clickFillingTab() {
+        fillingTab.scrollTo();
+        fillingTab.click();
     }
 
     public boolean headerBunIsDisplayed() {
-        return headerBun.isDisplayed();
+        return bunHeader.isDisplayed();
     }
     public boolean headerSauceIsDisplayed() {
-        return headerSauce.isDisplayed();
+        return sauceHeader.isDisplayed();
     }
     public boolean headerFillingIsDisplayed() {
-        return headerFilling.isDisplayed();
+        return fillingHeader.isDisplayed();
     }
 }

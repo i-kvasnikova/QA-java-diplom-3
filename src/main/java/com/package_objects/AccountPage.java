@@ -7,11 +7,11 @@ import org.openqa.selenium.support.How;
 
 public class AccountPage extends PagesHeader {
     @FindBy(how = How.XPATH, using = ".//button[contains(text(), 'Выход')]")
-    private SelenideElement btnLogout;
+    private SelenideElement logoutButton;
 
     @Step("Нажать кнопку 'Выход'")
-    public void clickBtnLogout() {
-        btnLogout.scrollTo();
-        btnLogout.click();
+    public void clickLogoutButton() {
+        logoutButton.scrollTo();
+        logoutButton.click();
     }
 }

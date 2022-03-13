@@ -16,7 +16,7 @@ public class PageRedirectTest extends BaseParamsSetup {
     @Step("Переход по клику на 'Личный кабинет'")
     public void redirectFromMainToLogin() {
         MainPage mainPage = openMainPage();
-        mainPage.clickBtnLogin();
+        mainPage.clickLoginButton();
         assertThat(webdriver().driver().url(), equalToIgnoringCase(apiConfig.getLoginPageUrl()));
     }
 
@@ -24,9 +24,9 @@ public class PageRedirectTest extends BaseParamsSetup {
     @Step("Переход из 'Личного кабинета' конструктор по клику на 'Конструктор'")
     public void redirectFromLoginToMainByConstructor() {
         MainPage mainPage = openMainPage();
-        mainPage.clickBtnLogin();
+        mainPage.clickLoginButton();
         LoginPage loginPage = page(LoginPage.class);
-        loginPage.clickBtnConstructor();
+        loginPage.clickConstructorButton();
         assertThat(webdriver().driver().url(), equalToIgnoringCase(apiConfig.getBaseUrl()));
     }
 
@@ -34,9 +34,9 @@ public class PageRedirectTest extends BaseParamsSetup {
     @Step("Переход из 'Личного кабинета' конструктор по клику на логотип")
     public void redirectFromLoginToMainByLogo() {
         MainPage mainPage = openMainPage();
-        mainPage.clickBtnLogin();
+        mainPage.clickLoginButton();
         LoginPage loginPage = page(LoginPage.class);
-        loginPage.clickBtnSiteLogo();
+        loginPage.clickSiteLogoButton();
         assertThat(webdriver().driver().url(), equalToIgnoringCase(apiConfig.getBaseUrl()));
     }
 }

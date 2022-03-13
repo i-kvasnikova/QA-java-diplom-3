@@ -13,8 +13,8 @@ public class ConstructorElemsTest extends BaseParamsSetup {
     @Step("Переход к разделу 'Булки'")
     public void clickOnContructorAreaBun() {
         MainPage mainPage = openMainPage();
-        mainPage.clickTabSauce();
-        mainPage.clickTabBun();
+        mainPage.clickSauceTab();
+        mainPage.clickBunTab();
         assertTrue(mainPage.headerBunIsDisplayed());
     }
 
@@ -22,7 +22,7 @@ public class ConstructorElemsTest extends BaseParamsSetup {
     @Step("Переход к разделу 'Соусы'")
     public void clickOnContructorAreaSauce() {
         MainPage mainPage = openMainPage();
-        mainPage.clickTabSauce();
+        mainPage.clickSauceTab();
         assertTrue(mainPage.headerSauceIsDisplayed());
     }
 
@@ -30,7 +30,7 @@ public class ConstructorElemsTest extends BaseParamsSetup {
     @Step("Переход к разделу 'Начинки'")
     public void clickOnContructorAreaFilling() {
         MainPage mainPage = openMainPage();
-        mainPage.clickTabFilling();
+        mainPage.clickFillingTab();
         assertTrue(mainPage.headerSauceIsDisplayed());
     }
 }

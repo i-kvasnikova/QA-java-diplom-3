@@ -10,57 +10,57 @@ import java.util.Map;
 
 public class LoginPage extends PagesHeader {
     @FindBy(how = How.XPATH, using = ".//label[contains(text(), 'Email')]//following-sibling::input")
-    private SelenideElement inputEmail;
+    private SelenideElement emailInput;
 
     @FindBy(how = How.XPATH, using = ".//label[contains(text(), 'Пароль')]//following-sibling::input")
-    private SelenideElement inputPassword;
+    private SelenideElement passwordInput;
 
     @FindBy(how = How.XPATH, using = ".//a[contains(text(), 'Зарегистрироваться')]")
-    private SelenideElement btnRegister;
+    private SelenideElement registerButton;
 
     @FindBy(how = How.XPATH, using = ".//button[contains(text(), 'Войти')]")
-    private SelenideElement btnLogin;
+    private SelenideElement loginButton;
 
     @FindBy(how = How.XPATH, using = ".//a[contains(text(), 'Восстановить пароль')]")
-    private SelenideElement btnRestorePassword;
+    private SelenideElement restorePasswordButton;
 
     @FindBy(how = How.XPATH, using = ".//h2[contains(text(), 'Вход')]")
-    private SelenideElement headerLogin;
+    private SelenideElement loginHeader;
 
     @Step("Нажать кнопку 'Зарегистрироваться'")
-    public void clickBtnRegister() {
-        btnRegister.scrollTo();
-        btnRegister.click();
+    public void clickRegisterButton() {
+        registerButton.scrollTo();
+        registerButton.click();
     }
 
     @Step("Нажать кнопку 'Войти'")
-    public void clickBtnLogin() {
-        btnLogin.scrollTo();
-        btnLogin.click();
+    public void clickLoginButton() {
+        loginButton.scrollTo();
+        loginButton.click();
     }
 
     @Step("Нажать кнопку 'Восстановить пароль'")
-    public void clickBtnRestorePassword() {
-        btnRestorePassword.scrollTo();
-        btnRestorePassword.click();
+    public void clickRestorePasswordButton() {
+        restorePasswordButton.scrollTo();
+        restorePasswordButton.click();
     }
 
     public String getPasswordFilledValue() {
-        return inputPassword.getValue();
+        return passwordInput.getValue();
     }
 
     public String getEmailFilledValue() {
-        return inputEmail.getValue();
+        return emailInput.getValue();
     }
 
     @Step("Заполнить поля для входа пользователя")
     public void fillInUserData(Map<String, String> user) {
-        inputEmail.setValue(user.get("email"));
-        inputPassword.setValue(user.get("password"));
+        emailInput.setValue(user.get("email"));
+        passwordInput.setValue(user.get("password"));
     }
 
     public boolean headerLoginIsVisible() {
-        headerLogin.waitUntil(Condition.visible, 5000);
-        return headerLogin.isDisplayed();
+        loginHeader.waitUntil(Condition.visible, 5000);
+        return loginHeader.isDisplayed();
     }
 }
