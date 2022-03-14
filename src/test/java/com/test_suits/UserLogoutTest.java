@@ -2,7 +2,6 @@ package com.test_suits;
 
 import com.package_objects.AccountPage;
 import com.package_objects.LoginPage;
-import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +23,7 @@ public class UserLogoutTest extends BaseParamsSetup {
     }
 
     @Test
-    @Step("Выход по кнопке «Выйти» в личном кабинете")
+    @DisplayName("Выход по кнопке «Выйти» в личном кабинете")
     public void logoutOnAccountPage() {
         openMainPage().clickAccountButton();
         loginPage.fillInUserData(userData);

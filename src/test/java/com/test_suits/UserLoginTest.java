@@ -4,7 +4,6 @@ import com.package_objects.AccountPage;
 import com.package_objects.LoginPage;
 import com.package_objects.RegisterPage;
 import com.package_objects.RestorePasswordPage;
-import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
@@ -34,7 +33,7 @@ public class UserLoginTest extends BaseParamsSetup {
     }
 
     @Test
-    @Step("Вход в аккаунт по кнопке «Войти в аккаунт» на главной")
+    @DisplayName("Вход в аккаунт по кнопке «Войти в аккаунт» на главной")
     public void loginOnMainPage() {
         openMainPage().clickLoginButton();
 
@@ -43,7 +42,7 @@ public class UserLoginTest extends BaseParamsSetup {
     }
 
     @Test
-    @Step("Вход в аккаунт через кнопку «Личный кабинет»")
+    @DisplayName("Вход в аккаунт через кнопку «Личный кабинет»")
     public void loginWithAccountHeaderButton() {
         openMainPage().clickAccountButton();
 
@@ -52,7 +51,7 @@ public class UserLoginTest extends BaseParamsSetup {
     }
 
     @Test
-    @Step("Вход в аккаунт через кнопку в форме регистрации")
+    @DisplayName("Вход в аккаунт через кнопку в форме регистрации")
     public void loginOnRegistrationPage() {
         openMainPage().clickLoginButton();
         loginPage.clickRegisterButton();
@@ -63,7 +62,7 @@ public class UserLoginTest extends BaseParamsSetup {
     }
 
     @Test
-    @Step("Вход в аккаунт через кнопку в форме восстановления пароля")
+    @DisplayName("Вход в аккаунт через кнопку в форме восстановления пароля")
     public void loginOnRestorePasswordPage() {
         openMainPage().clickLoginButton();
         loginPage.clickRestorePasswordButton();

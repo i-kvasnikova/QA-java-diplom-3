@@ -3,7 +3,6 @@ package com.test_suits;
 import com.package_objects.LoginPage;
 import com.package_objects.RegisterPage;
 import io.qameta.allure.Description;
-import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +27,7 @@ public class UserRegisterTest extends BaseParamsSetup {
     }
 
     @Test
-    @Step("Зарегистрировать пользователя с валидными данными")
+    @DisplayName("Зарегистрировать пользователя с валидными данными")
     public void registerUserWithValidData() {
         registerPage.fillInUserData(userData);
         registerPage.clickRegisterButton();
@@ -42,7 +41,7 @@ public class UserRegisterTest extends BaseParamsSetup {
     }
 
     @Test
-    @Step("Зарегистрировать пользователя с некорректным паролем")
+    @DisplayName("Зарегистрировать пользователя с некорректным паролем")
     @Description("Пользователь не зарегистрирован, выдано сообщение об ошибке")
     public void registerUserWithInvalidPassword() {
         userData.put("password", "312");
